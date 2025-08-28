@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nouvel Article - Mmadi Notes</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+  body { background:#f0f2f5; color:#111827; line-height:1.6; }
+  header { background:#111827; color:#fff; padding:30px 20px; text-align:center; }
+  header h1 { font-size:2.5rem; }
+  nav a { color:#10b981; margin:0 15px; text-decoration:none; font-weight:700; }
+  nav a:hover { color:#34d399; }
+  main { max-width:700px; margin:50px auto; background:#fff; padding:30px; border-radius:15px; box-shadow:0 6px 20px rgba(0,0,0,0.1); }
+  main h2 { margin-bottom:20px; font-size:1.8rem; border-bottom:3px solid #10b981; display:inline-block; padding-bottom:5px; }
+  label { display:block; margin:15px 0 5px; font-weight:600; }
+  input[type="text"], select, textarea { width:100%; padding:10px; border-radius:8px; border:1px solid #ccc; font-size:1rem; }
+  textarea { resize:vertical; min-height:100px; }
+  button { margin-top:20px; padding:12px 20px; background:#10b981; color:#fff; border:none; border-radius:10px; font-size:1rem; cursor:pointer; font-weight:700; }
+  button:hover { background:#34d399; }
+  footer { text-align:center; padding:25px; background:#111827; color:#fff; margin-top:40px; font-size:0.9rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Mmadi Notes</h1>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="projets.html">Projets</a>
+    <a href="livres.html">Livres</a>
+    <a href="idees.html">Idées</a>
+  </nav>
+</header>
+
+<main>
+  <h2>Rédiger un nouvel article</h2>
+  <form id="articleForm">
+    <label for="titre">Titre</label>
+    <input type="text" id="titre" required>
+
+    <label for="categorie">Catégorie</label>
+    <select id="categorie" required>
+      <option value="projet">Projet</option>
+      <option value="livre">Livre</option>
+      <option value="idee">Idée</option>
+    </select>
+
+    <label for="auteur">Auteur (uniquement pour livre)</label>
+    <input type="text" id="auteur" placeholder="Optionnel">
+
+    <label for="description">Description / Contenu</label>
+    <textarea id="description" required></textarea>
+
+    <label for="image">Image (URL, optionnelle)</label>
+    <input type="text" id="image" placeholder="https://...">
+
+    <button type="submit">Publier</button>
+  </form>
+</main>
+
+<footer>
+  &copy; 2025 Mmadi Notes. Tous droits réservés.
+</footer>
+
+<script>
+// Tableaux existants (ils doivent être identiques à ceux dans index.html)
+const projets = [];
+const livres = [];
+const idees = [];
+
+// Fonction pour récupérer le dernier élément
+function getDernierElement(array) { return array[array.length - 1]; }
+
+// Crée une carte (peut être réutilisée pour l'accueil)
+function createCard(item, type) {
+  return {
+    titre: item.titre,
+    description: item.description,
+    auteur: item.auteur || "",
+    image: item.image || ""
+  };
+}
+
+document.getElementById("articleForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const titre = document.getElementById("titre").value;
+  const categorie = document.getElementById("categorie").value;
+  const description = document.getElementById("description").value;
+  const auteur = document.getElementById("auteur").value;
+  const image = document.getElementById("image").value;
+
+  const nouvelArticle = { titre, description, auteur, image };
+
+  // Ajouter au tableau correspondant
+  if(categorie === "projet") projets.push(nouvelArticle);
+  else if(categorie === "livre") livres.push(nouvelArticle);
+  else if(categorie === "idee") idees.push(nouvelArticle);
+
+  alert("Article publié ! Il apparaîtra sur l'accueil comme le dernier publié.");
+
+  // Réinitialiser le formulaire
+  document.getElementById("articleForm").reset();
+});
+</script>
+
+</body>
+</html>

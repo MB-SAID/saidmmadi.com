@@ -1,0 +1,24 @@
+{
+  "projets": [
+    {
+      "titre": "Projet Exemple",
+      "description": "Voici un exemple de projet pour tester le site.",
+      "image": ""
+    }
+  ],
+  "livres": [
+    {
+      "titre": "Livre Exemple",
+      "auteur": "Auteur 1",
+      "description": "Résumé du livre exemple pour montrer le fonctionnement.",
+      "image": ""
+    }
+  ],
+  "idees": [
+    {
+      "titre": "Idée Exemple",
+      "description": "Description d'une idée exemple pour tester le site.",
+      "image": ""
+    }
+  ]
+}
